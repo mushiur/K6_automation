@@ -1,14 +1,24 @@
 import http from 'k6/http';
 import { check, group } from 'k6';
 import papaparse from 'https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js';
+// import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
+
+// export function handleSummary(data) {
+//     return {
+//       "summary.html": htmlReport(data),
+//     };
+// }
+
+// source code from amimul bhai (Manager QA, SSL Wirless)
 import { htmlReport } from "https://raw.githubusercontent.com/benc-uk/k6-reporter/main/dist/bundle.js";
+import { textSummary } from "https://jslib.k6.io/k6-summary/0.0.1/index.js";
 
 export function handleSummary(data) {
-    return {
-      "summary.html": htmlReport(data),
-    };
+  return {
+    "result.html": htmlReport(data),
+    stdout: textSummary(data, { indent: " ", enableColors: true }),
+  };
 }
-
 
 
 export let options = {
