@@ -22,8 +22,8 @@ export function handleSummary(data) {
 
 
 export let options = {
-  vus: 10,
-  duration: '30s',
+  vus: 1,
+  duration: '1s',
 };
 
 // Read data from a CSV file
@@ -47,6 +47,9 @@ export default function () {
         let response = http.get(endpoint, {
           params: row,
         });
+        console.log("Endpoint is :" + endpoint)
+        console.log("Respose Code is :" + response.status)
+        console.log("Respose body is :" + response.body)
 
         check(response, {
           'is status 200': (r) => r.status === 200,
